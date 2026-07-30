@@ -3,6 +3,8 @@
 // frontend code.
 
 const express = require('express');
+// this one is to help web-02 stay active
+const fetch = require('node-fetch');
 const louter = express.Router();
 
 const API_KEY = process.env.FOURSQUARE_API_KEY;
