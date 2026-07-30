@@ -17,6 +17,22 @@ then filter and sort the results.
 - Sort results by distance or alphabetically
 - Shows a clear message if the search fails or the API is down
 
+## Structure
+Rwanda-place-finder/
+├── .env                    (as template)
+├── .gitignore              
+├── README.md               
+├── package.json            
+├── package-lock.json        (appears after you run "npm install")
+├── node_modules/             (auto-download, excluded by .gitignore)
+├── public/
+│   ├── app.js                
+│   ├── index.html            
+│   └── style.css             
+├── routes/
+│   └── places.js             
+└── server.js                 
+
 ## How it's built
 
 - **Backend:** Node.js + Express. This is the part that actually calls
