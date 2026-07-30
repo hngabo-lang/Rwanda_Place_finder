@@ -1,72 +1,99 @@
-# Rwanda_Place_finder
+# Rwanda Place Finder
 
-A small web app that lets you search for restaurants, shops, hospitals and other places near you in Rwanda.
+A simple web app that helps people find places in Rwanda like restaurants, hospitals, shops, and other spots  using real data from the Foursquare API. Instead of scrolling through random lists, you can search, filter, and sort to find exactly what you're looking for.
 
-## What it does and why
+## What This App Does
 
-Finding a specific type of place nearby (a restaurant, a pharmacy, a shop)
-usually means asking someone or scrolling through Google reviews. This app
-pulls real place data from Foursquare so you can search by keyword and area,
-then filter and sort the results.
+Finding good places in a new city can be hard. This app makes it easier by letting you:
 
-## Features
+- Search for places by name or type (like "restaurant" or "cafe")
+- Filter results so you only see what matters to you
+- Sort results in a way that makes sense (like by rating or distance)
+- See clear, easy-to-read details for each place
 
-- Search for places by keyword (e.g. "restaurant", "pharmacy") and area
-  (Kigali, Huye, Musanze, Rubavu, Muhanga, or Rwamagana)
-- Filter results by category
-- Sort results by distance or alphabetically
-- Shows a clear message if the search fails or the API is down
+This isn't just a random list of places, it's built to actually help someone decide where to go.
 
-## Structure
-Rwanda-place-finder/
-├── .env                    (as template)
-├── .gitignore              
-├── README.md               
-├── package.json            
-├── package-lock.json        (appears after you run "npm install")
-├── node_modules/             (auto-download, excluded by .gitignore)
-├── public/
-│   ├── app.js                
-│   ├── index.html            
-│   └── style.css             
-├── routes/
-│   └── places.js             
-└── server.js                 
+## The API We Used
 
-## How it's built
+This app uses the **Foursquare Places API** to get real, up-to-date information about places in Rwanda.
 
-- **Backend:** Node.js + Express. This is the part that actually calls
-  Foursquare.
-- **Frontend:** plain HTML, CSS, and JavaScript.
-- **API used:** [Foursquare Places API](https://location.foursquare.com/products/places-api/)
+- Foursquare API docs: https://location.foursquare.com/developer/reference/place-search
 
-## Running it locally
+Big thanks to Foursquare for making this data available for developers to build with.
 
-1. Clone the repo and go into the folder:
-   ```
-   git clone + url
-   cd kigali-places-finder
-   ```
+## How to Run This App Locally
 
-2. Install the dependencies:
-   ```
-   npm install
-   ```
+Follow these steps to get the app running on your own computer.
 
-3. Get a free Foursquare API key:
-   - Sign up at https://location.foursquare.com/developer/
-   - Create a project
-   - Copy your Service API Key
+### 1. Clone the repository
 
-4. Create a `.env` file in the project folder and paste api key inside:
-   ```
-   FOURSQUARE_API_KEY= api key
-   PORT=3000
-   ```
+```bash
+git clone url
+cd Rwanda_place_finder
+```
 
-5. Start the server:
-   ```
-   npm start
-   ```
+### 2. Install the backend dependencies
 
-6. Open `http://localhost:3000` in your browser.
+```bash
+npm install
+```
+
+### 3. Add your API key
+
+Create a file called `.env` add your own Foursquare API key:
+
+```
+PORT=3000
+FOURSQUARE_API_KEY=your_api_key_here
+```
+
+**Important:** never share your real `.env` file publicly. It's already listed in `.gitignore` so it won't be uploaded to GitHub by accident.
+
+### 4. Start the backend server
+
+```bash
+npm start
+```
+
+You should see a message saying the server is running.
+
+### 5. Open the frontend
+
+Open the `index.html` file in your browser, or serve it with a simple local server. You should now be able to search for places.
+
+## How This App Is Deployed
+
+This app runs on two identical web servers (`web-01` and `web-02`), with a load balancer (`lb-01`) in front of them that spreads out incoming traffic. This means the app can keep working smoothly even if one server gets busy.
+
+### Steps we followed to deploy it
+
+1. Copied the app's frontend and backend files onto both `web-01` and `web-02`
+2. Installed Node.js and the required packages on each server
+3. Started the backend on each server
+4. Set up Nginx on each server to serve the app and forward API requests to the backend
+5. Configured HAProxy on `lb-01` to balance traffic between `web-01` and `web-02`
+6. Tested that traffic really does switch between both servers
+
+### How we tested the load balancer
+
+We used a simple test route called `/which-server`, which just replies with the name of whichever server answered the request. Refreshing the page (or repeating a request) several times showed it switching between `web-01` and `web-02`, confirming the load balancer works correctly.
+
+## Live Links
+
+- **Deployed app:**(https://www.aristote.tech/)
+- **Demo video:** `<add your video link here>`
+
+## Challenges We Ran Into
+
+While setting this up, we hit a few real bumps along the way:
+
+- **A public Wi-Fi login page got in the way of testing.** Some of our early tests kept getting redirected to a network login page instead of reaching our server. Switching networks fixed it.
+- **HTTP requests kept redirecting to HTTPS.** Our load balancer was set up to force secure connections, so plain `http://` requests bounced to `https://` before reaching our test route.
+- **A missing test route caused a "Not Found" error.** Our servers didn't have a `/which-server` path set up yet, so we added a small Nginx rule on each server to return its own name, which let us properly confirm the load balancer was working.
+
+Working through each of these one at a time helped us confirm, step by step, that the whole system frontend, backend, and load balancer, was working the way it should.
+
+## Credits
+
+- Place data powered by [Foursquare](https://location.foursquare.com/)
+  
