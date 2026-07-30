@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rwanda Place Finder</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header>
+    <button id="dark-toggle">Dark Mode</button>
+    <h1>Rwanda Place Finder</h1>
+    <p>Find restaurants, shops and services near you in Rwanda.</p>
+  </header>
+
+  <main>
+
+    <!-- search box -->
+    <form id="finder-form">
+      <input type="text" id="what-input" placeholder="What are you looking for? (e.g. restaurant)" />
+      <input type="text" id="where-input" placeholder="Area (e.g. Kigali, Huye, Musanze)" value="Kigali" />
+      <button type="submit">Search</button>
+    </form>
+
+    <!-- these only change how the results already on screen are shown -->
+    <div class="filters">
+      <label>
+        Category:
+        <select id="type-filter">
+          <option value="">All</option>
+        </select>
+      </label>
+      <label>
+        Sort by:
+        <select id="order-select">
+          <option value="distance">Closer than others</option>
+          <option value="name">Name (A-Z)</option>
+        </select>
+      </label>
+    </div>
+
+    <p id="msg-box"></p>
+
+    <!-- highlights the 3 closest results from the current search -->
+    <div id="top-picks-section" style="display:none;">
+      <h2>Top Picks Near You</h2>
+      <div id="top-picks-list" class="top-picks-row"></div>
+    </div>
+
+    <div class="results-header">
+      <h2>Results</h2>
+      <button type="button" id="surprise-btn" style="display:none;">Random choice</button>
+    </div>
+    <div id="spot-list"></div>
+
+  </main>
+
+  <footer>
+    <p>These data are from the <a href="https://location.foursquare.com/products/places-api/" target="_blank">Foursquare Places API</a>.</p>
+  </footer>
+
+  <script src="apk.js"></script>
+</body>
+</html>
