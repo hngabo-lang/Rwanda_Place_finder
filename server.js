@@ -15,6 +15,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 // anything hitting /api/places gets handled in places.js
 app.use('/api/places', placesRouter);
 
+// tells me which server (Web01 or Web02) actually answered, and used to prove the load balancer works
+const os = require('os');
+app.get('/which-server', (req, res) => {
+  res.send('Responding from: ' + os.hostname());
+});
+
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
