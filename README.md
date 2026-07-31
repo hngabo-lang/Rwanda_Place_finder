@@ -81,8 +81,7 @@ We used a simple test route called `/which-server`, which just replies with the 
 ## Live Links
 
 - **Deployed app:**(https://www.aristote.tech/)
-- **Demo video:** `<add your video link here>`
-
+- **Demo video:** (https://youtu.be/KnEzbQnpl7Y?si=WMQq0Glg8oHGMfvP)
 ## Challenges We Ran Into
 
 While setting this up, we hit a few real bumps along the way:
