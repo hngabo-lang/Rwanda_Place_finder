@@ -76,7 +76,7 @@ This app runs on two identical web servers (`web-01` and `web-02`), with a load 
 
 ### How we tested the load balancer
 
-We used a simple test route called `/which-server`, which just replies with the name of whichever server answered the request. Refreshing the page (or repeating a request) several times showed it switching between `web-01` and `web-02`, confirming the load balancer works correctly.
+I used a simple test route called `/which-server`, which just replies with the name of whichever server answered the request. Refreshing the page (or repeating a request) several times showed it switching between `web-01` and `web-02`, confirming the load balancer works correctly.
 
 ## Live Links
 
@@ -86,11 +86,11 @@ We used a simple test route called `/which-server`, which just replies with the 
 
 While setting this up, we hit a few real bumps along the way:
 
-- **A public Wi-Fi login page got in the way of testing.** Some of our early tests kept getting redirected to a network login page instead of reaching our server. Switching networks fixed it.
+- **A public Wi-Fi login page got in the way of testing.** Some of my early tests kept getting redirected to a network login page instead of reaching our server. Switching networks fixed it.
 - **HTTP requests kept redirecting to HTTPS.** Our load balancer was set up to force secure connections, so plain `http://` requests bounced to `https://` before reaching our test route.
 - **A missing test route caused a "Not Found" error.** Our servers didn't have a `/which-server` path set up yet, so we added a small Nginx rule on each server to return its own name, which let us properly confirm the load balancer was working.
 
-Working through each of these one at a time helped us confirm, step by step, that the whole system frontend, backend, and load balancer, was working the way it should.
+Working through each of these one at a time helped me confirm, step by step, that the whole system frontend, backend, and load balancer, was working the way it should.
 
 ## Credits
 
