@@ -2,7 +2,7 @@
 
 A simple web app that helps people find places in Rwanda like restaurants, hospitals, shops, and other spots  using real data from the Foursquare API. Instead of scrolling through random lists, you can search, filter, and sort to find exactly what you're looking for.
 
-## What This App Does
+## What This website Does
 
 Finding good places in a new city can be hard. This app makes it easier by letting you:
 
@@ -15,7 +15,7 @@ This isn't just a random list of places, it's built to actually help someone dec
 
 ## The API We Used
 
-This app uses the **Foursquare Places API** to get real, up-to-date information about places in Rwanda.
+This website uses the **Foursquare Places API** to get real, up-to-date information about places in Rwanda.
 
 - Foursquare API docs: https://location.foursquare.com/developer/reference/place-search
 
@@ -44,7 +44,7 @@ Create a file called `.env` add your own Foursquare API key:
 
 ```
 PORT=3000
-FOURSQUARE_API_KEY=your_api_key_here
+FOURSQUARE_API_KEY= api key 
 ```
 
 **Important:** never share your real `.env` file publicly. It's already listed in `.gitignore` so it won't be uploaded to GitHub by accident. Also a quick Notice the package-lock.json creates itself after running npm install.
