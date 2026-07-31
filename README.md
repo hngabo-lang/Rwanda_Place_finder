@@ -47,7 +47,7 @@ PORT=3000
 FOURSQUARE_API_KEY=your_api_key_here
 ```
 
-**Important:** never share your real `.env` file publicly. It's already listed in `.gitignore` so it won't be uploaded to GitHub by accident.
+**Important:** never share your real `.env` file publicly. It's already listed in `.gitignore` so it won't be uploaded to GitHub by accident. Also a quick Notice the package-lock.json creates itself after running npm install.
 
 ### 4. Start the backend server
 
